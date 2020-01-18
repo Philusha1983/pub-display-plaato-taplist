@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Plaato demo</title>
+  <style>
+    body {
+      font-size: 2rem;
+      font-family: Arial;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script type="text/javascript" src="jquery.fullscreen.min.js"></script>
+</head>
+
+<body id="fullscreen">
+
+  <p>Your browser <span id="support">doesn't support</span> FullScreen API.</p>
+  <p>This block is <span id="state">not</span> in fullscreen mode.
+    <a href="#" id="buttonFull" class="requestfullscreen">Click to open it in fullscreen</a>
+    <a href="#" class="exitfullscreen" style="display: none">Click to exit fullscreen</a>.</p>
+
+  <b>Beer on tap:</b>
+  <div id="name1">No data</div>
+  <b>description</b>
+  <div id="desc1">No data</div>
+  <b>anount left</b>
+  <div id="prec1">No data</div>
+  <b>anount left</b>
+  <div id="liters1">No data</div>
+
+<div style="display:none;">
+  <br/>
+  <b>Beer in fermentation</b>
+  <div id="bub">No data</div>
+  <div id="bpm">No data</div>
+  <div id="temp">No data</div>
+  <div id="abv">No data</div>
+
+</div>
+  <img  id="QRCodeImg" src="" alt="" title="" />
+
+
+
+  <script>
+    // define your keg token
+    var keg1 = "http://plaato.blynk.cc/1cfba178c3164655981d05e2cd33207b/get/";
+    // define  your airlock toke
+    var airlock = "http://plaato.blynk.cc/9b21b619c17c4308b80c1160a15b347b/get/";
+
+    $.get(keg1 + "v64", function (beerName) {
+      $("#name1").html("''" +beerName + "''");
+    });
+    $.get(keg1 + "v48", function (percentLeft) {
+      $("#prec1").html(percentLeft + "% left");
+    });
+    $.get(keg1 + "v51", function (litersLeft) {
+      $("#liters1").html(litersLeft  + " litres");
+    });
+    $.get(keg1 + "v67", function (description) {
+      $("#desc1").html(description);
+    });
+    $.get(keg1 + "v66", function (abv) {
+      $("#abv1").html(abv);
+    });
+    $.get(airlock + "v110", function (data3) {
+      $("#bub").html(data3 + " Total bubbles");
+    });
+    $.get(airlock + "v102", function (data4) {
+      $("#bpm").html(data4 + " bubbles per minute");
+    });
+    $.get(airlock + "v103", function (data5) {
+      $("#temp").html(data5 + "°C Ambient temperature");
+    });
+    $.get(airlock + "v107", function (data6) {
+      $("#abv").html(data6 + "% ABV");
+    });
+
+    //qr code url generator takes the current url and generate a QR code no matter where the file is hosted.
+    var currentURL = $(location).attr('href');
+    var QRCodeURL = ("https://api.qrserver.com/v1/create-qr-code/?data=" + currentURL + "&amp&size=200X200&format=png&color=000&bgcolor=fff&margin=10");
+    console.log(currentURL);
+    console.log(QRCodeURL);
+    $('#QRCodeImg').attr('src',QRCodeURL);
+
+
+    //enter full screen mode
+
+      $(function() {
+        // check native support
+        $('#support').text($.fullscreen.isNativelySupported() ? 'supports' : 'doesn\'t support');
+
+        // open in fullscreen
+        $('#fullscreen .requestfullscreen').click(function() {
+          $('#fullscreen').fullscreen();
+          return false;
+        });
+
+        // exit fullscreen
+        $('#fullscreen .exitfullscreen').click(function() {
+          $.fullscreen.exit();
+          return false;
+        });
+
+        // document's event
+        $(document).bind('fscreenchange', function(e, state, elem) {
+          // if we currently in fullscreen mode
+          if ($.fullscreen.isFullScreen()) {
+            $('#fullscreen .requestfullscreen').hide();
+            $('#fullscreen .exitfullscreen').show();
+          } else {
+            $('#fullscreen .requestfullscreen').show();
+            $('#fullscreen .exitfullscreen').hide();
+          }
+
+          $('#state').text($.fullscreen.isFullScreen() ? '' : 'not');
+        });
+      });
+</script>
+
+
+</body>
+
+</html>
