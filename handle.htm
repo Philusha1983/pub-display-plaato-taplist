@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Plaato demo</title>
+  <style>
+    body {
+      font-size: 2rem;
+      font-family: Arial;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+
+<body>
+  <b>Beer on tap:</b>
+  <div id="name1">No data</div>
+  <b>description</b>
+  <div id="desc1">No data</div>
+  <b>anount left</b>
+  <div id="prec1">No data</div>
+  <b>anount left</b>
+  <div id="liters1">No data</div>
+
+
+  <script>
+    // define your keg token 
+    var keg1 = "http://plaato.blynk.cc/1cfba178c3164655981d05e2cd33207b/get/";
+
+    $.get(keg1 + "v64", function (beerName) {
+      $("#name1").html("''" +beerName + "''");
+    });
+    $.get(keg1 + "v48", function (percentLeft) {
+      $("#prec1").html(percentLeft + "% left");
+    });
+    $.get(keg1 + "v51", function (litersLeft) {
+      $("#liters1").html(litersLeft  + " litres");
+    });
+    $.get(keg1 + "v67", function (description) {
+      $("#desc1").html(description);
+    });
+    $.get(keg1 + "v66", function (abv) {
+      $("#abv1").html(abv);
+    });
+</script>
+
+
+</body>
+
+</html>
