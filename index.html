@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!--  This site was created in Webflow. http://www.webflow.com  -->
-<!--  Last Published: Sat Jan 18 2020 17:45:26 GMT+0000 (Coordinated Universal Time)  -->
-<html data-wf-page="5e20736970ac8a7d2c68bac5" data-wf-site="5e20736970ac8ac62568bac4">
+<html>
 <head>
   <meta charset="utf-8">
   <title>Ansky Brewery - taplist - 🍻</title>
@@ -10,7 +8,6 @@
   <meta content="Here are the beers I have now in my kegerator 🍺" property="og:description">
   <meta content="summary" name="twitter:card">
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  <meta content="Webflow" name="generator">
   <link href="css/normalize.css" rel="stylesheet" type="text/css">
   <link href="css/webflow.css" rel="stylesheet" type="text/css">
   <link href="css/ansky-taplist.webflow.css" rel="stylesheet" type="text/css">
@@ -72,22 +69,56 @@
   <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
   <script>
     // define your first keg token
-    var keg1 = "http://plaato.blynk.cc/[TokenNumber]/get/";
+    var keg1 = "http://plaato.blynk.cc/[Token-Goes-Here]/get/";
+    var keg2 = "http://plaato.blynk.cc/[Token-Goes-Here]/get/";
+    var keg3 = "http://plaato.blynk.cc/[Token-Goes-Here]/get/";
 
-    $.get(keg1 + "v64", function (beerName) {
-      $("#name1").html("'" +beerName + "'");
+    $.get(keg1 + "v64", function (beerName1) {
+      $("#name1").html("'" +beerName1 + "'");
     });
-    $.get(keg1 + "v48", function (percentLeft) {
-      $("#prec1").html(percentLeft + "% left");
+    $.get(keg1 + "v48", function (percentLeft1) {
+      $("#prec1").html(percentLeft1 + "% left");
     });
-    $.get(keg1 + "v51", function (litersLeft) {
-      $("#liters1").html(litersLeft  + " litres");
+    $.get(keg1 + "v51", function (litersLeft1) {
+      $("#liters1").html(litersLeft1  + " litres");
     });
-    $.get(keg1 + "v67", function (description) {
-      $("#desc1").html(description);
+    $.get(keg1 + "v67", function (description1) {
+      $("#desc1").html(description1);
     });
-    $.get(keg1 + "v68", function (abv) {
-      $("#abv1").html(abv + "% abv");
+    $.get(keg1 + "v68", function (abv1) {
+      $("#abv1").html(abv1 + "% abv");
+    });
+
+    $.get(keg2 + "v64", function (beerName2) {
+      $("#name2").html("'" +beerName2 + "'");
+    });
+    $.get(keg2 + "v48", function (percentLeft2) {
+      $("#prec2").html(percentLeft2 + "% left");
+    });
+    $.get(keg2 + "v51", function (litersLeft2) {
+      $("#liters2").html(litersLeft2  + " litres");
+    });
+    $.get(keg2 + "v67", function (description2) {
+      $("#desc2").html(description2);
+    });
+    $.get(keg2 + "v68", function (abv2) {
+      $("#abv2").html(abv2 + "% abv");
+    });
+
+    $.get(keg3 + "v64", function (beerName3) {
+      $("#name3").html("'" +beerName3 + "'");
+    });
+    $.get(keg3 + "v48", function (percentLeft3) {
+      $("#prec3").html(percentLeft3 + "% left");
+    });
+    $.get(keg3 + "v51", function (litersLeft3) {
+      $("#liters3").html(litersLeft3  + " litres");
+    });
+    $.get(keg3 + "v67", function (description3) {
+      $("#desc3").html(description3);
+    });
+    $.get(keg3 + "v68", function (abv3) {
+      $("#abv3").html(abv3 + "% abv");
     });
 
     //qr code url generator takes the current url and generate a QR code no matter where the file is hosted.
