@@ -1,7 +1,7 @@
 
 # pub-display-plaato-taplist
 
- - Digital taplist base o Plaato API.
+ - Digital taplist based on [Plaato API](https://intercom.help/plaato/en/collections/2815576-api).
  - Free for use.
  - Tips are welcome [here](http://bit.ly/tipjar_ansky5)
  
